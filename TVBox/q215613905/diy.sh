@@ -154,4 +154,4 @@ echo '添加add-X86完成'
 EOF
 chmod +x ./add-X86.sh
 
-# echo "javaVersion=17" >> $GITHUB_ENV
+echo "javaVersion=11" >> $GITHUB_ENV
