@@ -8,11 +8,6 @@ sed -i 's/影视/QTM影视/g' app/src/main/res/values-zh-rCN/strings.xml
 sed -i 's/影視/QTM影视/g' app/src/main/res/values-zh-rTW/strings.xml
 echo '软件名称修改完成'
 
-# 更改扫码管理页
-cp -rf ${{ github.workspace }}/code/TVBox/file/index.html app/src/main/assets/index.html
-#sed -i 's/影視/QTM影视/g' app/src/main/assets/index.html
-echo '修改远程管理首页名完成'
-
 # 添加播放源
 sed -i '/tv.api.config.LiveConfig/a\import com.fongmi.android.tv.bean.Config;' app/src/main/java/com/fongmi/android/tv/App.java   # import添加播放源Config
 sed -i '/this.activity = activity/a\        Config.create(0,"https://gitee.com/MINGERTAI/tvbox-json/raw/main/tv/0/0821.json").update();' app/src/main/java/com/fongmi/android/tv/App.java   # 默认点播配置
@@ -33,3 +28,8 @@ cp -rf ${{ github.workspace }}/code/TVBox/img/00/favicon.ico app/src/main/assets
 cp -rf ${{ github.workspace }}/code/TVBox/img/00/ic_banner.png app/src/leanback/res/drawable/ic_banner.png
 cp -rf ${{ github.workspace }}/code/TVBox/img/00/ic_logo.png app/src/main/res/drawable-nodpi/ic_logo.png
 echo '修改APK LOGO完成'
+
+# 更改扫码管理页
+cp -rf ${{ github.workspace }}/code/TVBox/file/index.html app/src/main/assets/app/src/main/assets/index.html
+# sed -i 's/影視/QTM影视/g' app/src/main/assets/index.html
+echo '修改远程管理首页名完成
