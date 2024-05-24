@@ -30,6 +30,6 @@ cp -rf ${{ github.workspace }}/code/TVBox/img/00/ic_logo.png app/src/main/res/dr
 echo '修改APK LOGO完成'
 
 # 更改扫码管理页
-cp -rf ${{ github.workspace }}/code/TVBox/file/index.html app/src/main/assets/app/src/main/assets/index.html
+cp -rf ${{ github.workspace }}/code/TVBox/file/index.html app/src/main/assets/index.html
 # sed -i 's/影視/QTM影视/g' app/src/main/assets/index.html
 echo '修改远程管理首页名完成'
