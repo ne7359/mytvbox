@@ -1,22 +1,4 @@
 #!/bin/bash
-sudo timedatectl set-timezone Asia/Shanghai
-echo "sourceURL=https://github.com/takagen99/Box" >> $GITHUB_ENV 
-# echo "tag=$(git log --date=format:'%Y.%m.%d-%H.%M' -1 --pretty=format:%cd)" >> $GITHUB_ENV
-# echo "tag=$(date "+%Y年%m月%d日-%H点%M分")" >> $GITHUB_ENV   # 添加编译时间
-echo "tag=$(date "+%Y.%m.%d-%H.%M")" >> $GITHUB_ENV   # 添加编译时间
-echo "sourceName=T" >> $GITHUB_ENV
-echo "diy_TIME=$(date "+%Y.%m.%d")" >> $GITHUB_ENV   # 添加版本号编译时间变量
-echo '生成日期完成'
-
-touch ./custom.sh
-cat << 'EOF' > ./custom.sh
-#!/bin/bash
-echo 'crosswalk源，防挂'
-if grep -q 'crosswalk' tv/build.gradle; then
-sed -i "/crosswalk/a\        maven { url 'https://o0halflife0o.github.io/crosswalk/releases/crosswalk/android/maven2' }" tv/build.gradle
-else
-sed -i "/jitpack.io/a\        maven { url 'https://o0halflife0o.github.io/crosswalk/releases/crosswalk/android/maven2' }" tv/build.gradle
-fi
 
 #echo '更改软件包名使共存'
 #sed -i 's/com.github.tvbox.osc.tk/com.github.tvbox.osc.qtm/g' tv/app/build.gradle
@@ -28,71 +10,58 @@ fi
 #sed -i '/targetSdkVersion/d' tv/app/build.gradle
 #sed -i '/minSdkVersion/a\        targetSdkVersion 29' tv/app/build.gradle
 
-#sed -i '/minSdk/d' tv/quickjs/build.gradle
-#sed -i '/targetSdk/d' tv/quickjs/build.gradle
-#sed -i '/defaultConfig/a\        minSdk 21' tv/quickjs/build.gradle
-#sed -i '/minSdk/a\        targetSdk 29' tv/quickjs/build.gradle
+# 修改扫码管理首页名
+cp -f TVBox/file/index.html tv/app/src/main/assets/index.html
+#sed -i 's/影視/QTM影视/g' tv/app/src/main/assets/index.html
+echo '修改扫码管理首页名完成'
 
-#echo '版本降低至minSdkVersion 18 targetSdkVersion 26 用于支持安卓4.4'
-#sed -i '/minSdkVersion/d' tv/app/build.gradle
-#sed -i '/com.github.tvbox.osc.tk/a\        minSdkVersion 18' tv/app/build.gradle
-#sed -i '/targetSdkVersion/d' tv/app/build.gradle
-#sed -i '/minSdkVersion/a\        targetSdkVersion 26' tv/app/build.gradle
-
-#sed -i '/minSdk/d' tv/quickjs/build.gradle
-#sed -i '/targetSdk/d' tv/quickjs/build.gradle
-#sed -i '/defaultConfig/a\        minSdk 18' tv/quickjs/build.gradle
-#sed -i '/minSdk/a\        targetSdk 26' tv/quickjs/build.gradle
-
-echo '关于-修改'
-sed -i '/android:text=/d' tv/app/src/main/res/layout/dialog_about.xml
-sed -i '/shadowRadius=/a\        android:text="        本软件只提供聚合展示功能，所有资源来自网上, 软件不参与任何制作, 上传, 储存, 下载等内容. 软件仅供学习参考, 请于安装后24小时内删除。\\n\\n\\n                                                                    QTM 编译"' tv/app/src/main/res/layout/dialog_about.xml
-
-echo '修改远程管理首页名'
-sed -i 's/TVBox/QTM影视/g' tv/app/src/main/res/raw/index.html
-
-echo '软件名称修改'
-sed -i 's/TVBox/QTM影视/g' tv/app/src/main/res/values-zh/strings.xml
-sed -i 's/TVBox/QTM影视/g' tv/app/src/main/res/values/strings.xml
+# 软件名称修改
+sed -i 's/影视/QTM影视/g' tv/app/src/main/res/values-zh-rCN/strings.xml
+sed -i 's/影視/QTM影视/g' tv/app/src/main/res/values-zh-rTW/strings.xml
+echo '软件名称修改完成'
 
 # 播放源地址
-echo '添加内置播放源地址'
-#sed -i 's#"app_source"><#"app_source">https://www.taihe.life/tv/api.json<#g' tv/app/src/main/res/values-zh/strings.xml
-#sed -i 's#"app_source"><#"app_source">https://www.taihe.life/tv/api.json<#g' tv/app/src/main/res/values/strings.xml
-sed -i 's#"app_source"><#"app_source">https://gitee.com/MINGERTAI/gao/raw/master/0821.json<#g' tv/app/src/main/res/values-zh/strings.xml
-sed -i 's#"app_source"><#"app_source">https://gitee.com/MINGERTAI/gao/raw/master/0821.json<#g' tv/app/src/main/res/values/strings.xml
-#sed -i 's#"app_source"><#"app_source">https://cyao.eu.org/files/n.json<#g' tv/app/src/main/res/values-zh/strings.xml
-#sed -i 's#"app_source"><#"app_source">https://cyao.eu.org/files/n.json<#g' tv/app/src/main/res/values/strings.xml
+sed -i '/tv.api.config.LiveConfig/a\import com.fongmi.android.tv.bean.Config;' tv/app/src/main/java/com/fongmi/android/tv/App.java   # import添加播放源Config
+sed -i '/this.activity = activity/a\        Config.create(0,"https://gitee.com/MINGERTAI/tvbox-json/raw/main/tv/0/0821.json").update();' tv/app/src/main/java/com/fongmi/android/tv/App.java   # 默认点播配置
+echo '添加默认点播配置完成'
+sed -i '/默认点播配置/a\        Config.create(1,"https://gitee.com/MINGERTAI/tvbox-json/raw/main/tv/0/0821.json").update();' tv/app/src/main/java/com/fongmi/android/tv/App.java   # 默认直播配置
+echo '添加默认直播配置完成'
 
 #图标修改
-cp -f TVBox/img/04/app_icon.png tv/app/src/main/res/drawable/app_icon.png
-cp -f TVBox/img/app_banner.png tv/app/src/main/res/drawable/app_banner.png
-
-#背景修改
-cp -f TVBox/img/bg/app_bg.png tv/app/src/main/res/drawable/app_bg.png
+cp -f TVBox/img/01/ic_launcher.png tv/app/src/main/res/mipmap-hdpi/ic_launcher.png
+cp -f TVBox/img/01/ic_launcher_foreground.png tv/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png
+cp -f TVBox/img/02/ic_launcher.png tv/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+cp -f TVBox/img/02/ic_launcher_foreground.png tv/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png
+cp -f TVBox/img/03/ic_launcher.png tv/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+cp -f TVBox/img/03/ic_launcher_foreground.png tv/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png    # 用于手机必须把03改成00替换mipmap-xxhdpi
+cp -f TVBox/img/04/ic_launcher.png tv/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+cp -f TVBox/img/04/ic_launcher_foreground.png tv/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png
+cp -f TVBox/img/00/favicon.ico tv/app/src/main/assets/favicon.ico
+cp -f TVBox/img/00/ic_banner.png tv/app/src/leanback/res/drawable/ic_banner.png
+cp -f TVBox/img/00/ic_logo.png tv/app/src/main/res/drawable-nodpi/ic_logo.png
 
 # 主页UI调整 恢复老版；默认多行显示
-#cp TVBox/takagen99/xmljava/fragment_user.xml tv/app/src/main/res/layout/fragment_user.xml
+#cp TVBox/file/xmljava/fragment_user.xml tv/app/src/main/res/layout/fragment_user.xml
 
 # 整体布局修改
-#cp TVBox/takagen99/xmljava/BaseActivity.java tv/app/src/main/java/com/github/tvbox/osc/base/BaseActivity.java 
+#cp TVBox/file/xmljava/BaseActivity.java tv/app/src/main/java/com/github/tvbox/osc/base/BaseActivity.java 
 
 # 主页增加每日一言/去除部分图标
-#cp TVBox/takagen99/xmljava/ApiConfig.java tv/app/src/main/java/com/github/tvbox/osc/api/ApiConfig.java
-#cp TVBox/takagen99/xmljava/activity_home.xml tv/app/src/main/res/layout/activity_home.xml
-#cp TVBox/takagen99/xmljava/HomeActivity.java tv/app/src/main/java/com/github/tvbox/osc/ui/activity/HomeActivity.java
+#cp TVBox/file/xmljava/ApiConfig.java tv/app/src/main/java/com/github/tvbox/osc/api/ApiConfig.java
+#cp TVBox/file/xmljava/activity_home.xml tv/app/src/main/res/layout/activity_home.xml
+#cp TVBox/file/xmljava/HomeActivity.java tv/app/src/main/java/com/github/tvbox/osc/ui/activity/HomeActivity.java
 
 # 默认设置修改
-#cp TVBox/takagen99/xmljava/App.java tv/app/src/main/java/com/github/tvbox/osc/base/App.java 
+#cp TVBox/file/xmljava/App.java tv/app/src/main/java/com/github/tvbox/osc/base/App.java 
 
 # 取消首页从通知栏位置布置
-#cp TVBox/takagen99/xmljava/BaseActivity.java tv/app/src/main/java/com/github/tvbox/osc/base/BaseActivity.java 
+#cp TVBox/file/xmljava/BaseActivity.java tv/app/src/main/java/com/github/tvbox/osc/base/BaseActivity.java 
 
 # 直播添加epg112114支持
-#cp TVBox/takagen99/xmljava/LivePlayActivity.java tv/app/src/main/java/com/github/tvbox/osc/ui/activity/LivePlayActivity.java
+#cp TVBox/file/xmljava/LivePlayActivity.java tv/app/src/main/java/com/github/tvbox/osc/ui/activity/LivePlayActivity.java
 
 # 搜索改为爱奇艺热词，支持首字母联想
-#cp TVBox/takagen99/xmljava/SearchActivity.java tv/app/src/main/java/com/github/tvbox/osc/ui/activity/SearchActivity.java
+#cp TVBox/file/xmljava/SearchActivity.java tv/app/src/main/java/com/github/tvbox/osc/ui/activity/SearchActivity.java
 
 #长按倍速修改为2
 #sed -i 's/3.0f/2.0f/g' tv/app/src/main/java/com/github/tvbox/osc/player/controller/VodController.java
@@ -105,9 +74,8 @@ cp -f TVBox/img/bg/app_bg.png tv/app/src/main/res/drawable/app_bg.png
 #sed -i 's/FrameLayout/LinearLayout/g' tv/app/src/main/res/layout/item_series.xml
 #sed -i 's/width=\"wrap_content\"/width=\"match_parent\"/g' tv/app/src/main/res/layout/item_series.xml
 #sed -i 's/@dimen\/vs_190/match_parent/g' tv/app/src/main/res/layout/item_series.xml
-EOF
-chmod +x ./custom.sh
 
+# 给apk签名
 touch ./ApkSign.sh
 cat << 'EOF' > ./ApkSign.sh
 #!/bin/bash
