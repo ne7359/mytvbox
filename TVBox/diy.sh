@@ -39,6 +39,7 @@ cp -f TVBox/img/04/ic_launcher_foreground.png tv/app/src/main/res/mipmap-xxxhdpi
 cp -f TVBox/img/00/favicon.ico tv/app/src/main/assets/favicon.ico
 cp -f TVBox/img/00/ic_banner.png tv/app/src/leanback/res/drawable/ic_banner.png
 cp -f TVBox/img/00/ic_logo.png tv/app/src/main/res/drawable-nodpi/ic_logo.png
+echo '更换apk logo完成'
 
 # 给apk签名
 touch ./ApkSign.sh
