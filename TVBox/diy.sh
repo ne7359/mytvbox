@@ -40,41 +40,6 @@ cp -f TVBox/img/00/favicon.ico tv/app/src/main/assets/favicon.ico
 cp -f TVBox/img/00/ic_banner.png tv/app/src/leanback/res/drawable/ic_banner.png
 cp -f TVBox/img/00/ic_logo.png tv/app/src/main/res/drawable-nodpi/ic_logo.png
 
-# 主页UI调整 恢复老版；默认多行显示
-#cp TVBox/file/xmljava/fragment_user.xml tv/app/src/main/res/layout/fragment_user.xml
-
-# 整体布局修改
-#cp TVBox/file/xmljava/BaseActivity.java tv/app/src/main/java/com/github/tvbox/osc/base/BaseActivity.java 
-
-# 主页增加每日一言/去除部分图标
-#cp TVBox/file/xmljava/ApiConfig.java tv/app/src/main/java/com/github/tvbox/osc/api/ApiConfig.java
-#cp TVBox/file/xmljava/activity_home.xml tv/app/src/main/res/layout/activity_home.xml
-#cp TVBox/file/xmljava/HomeActivity.java tv/app/src/main/java/com/github/tvbox/osc/ui/activity/HomeActivity.java
-
-# 默认设置修改
-#cp TVBox/file/xmljava/App.java tv/app/src/main/java/com/github/tvbox/osc/base/App.java 
-
-# 取消首页从通知栏位置布置
-#cp TVBox/file/xmljava/BaseActivity.java tv/app/src/main/java/com/github/tvbox/osc/base/BaseActivity.java 
-
-# 直播添加epg112114支持
-#cp TVBox/file/xmljava/LivePlayActivity.java tv/app/src/main/java/com/github/tvbox/osc/ui/activity/LivePlayActivity.java
-
-# 搜索改为爱奇艺热词，支持首字母联想
-#cp TVBox/file/xmljava/SearchActivity.java tv/app/src/main/java/com/github/tvbox/osc/ui/activity/SearchActivity.java
-
-#长按倍速修改为2
-#sed -i 's/3.0f/2.0f/g' tv/app/src/main/java/com/github/tvbox/osc/player/controller/VodController.java
-
-#添加详情页播放列表宽度自适
-#sed -i '/import me.jessyan.autosize.utils.AutoSizeUtils;/a\import android.graphics.Rect;\nimport android.graphics.Paint;\nimport android.text.TextPaint;\nimport androidx.annotation.NonNull;\nimport android.graphics.Typeface;\nimport androidx.recyclerview.widget.RecyclerView;' tv/app/src/main/java/com/github/tvbox/osc/ui/activity/DetailActivity.java
-#sed -i '/private View seriesFlagFocus = null;/a\    private V7GridLayoutManager mGridViewLayoutMgr = null;' tv/app/src/main/java/com/github/tvbox/osc/ui/activity/DetailActivity.java
-#sed -i 's/mGridView.setLayoutManager(new V7GridLayoutManager(this.mContext, isBaseOnWidth() ? 6 : 7));/mGridView.setHasFixedSize(false);\n        this.mGridViewLayoutMgr = new V7GridLayoutManager(this.mContext, isBaseOnWidth() ? 6 : 7);\n        mGridView.setLayoutManager(this.mGridViewLayoutMgr);\n/g' tv/app/src/main/java/com/github/tvbox/osc/ui/activity/DetailActivity.java
-#sed -i '/seriesAdapter.setNewData(vodInfo.seriesMap.get(vodInfo.playFlag));/i\        Paint pFont = new Paint();\n        Rect rect = new Rect();\n        List<VodInfo.VodSeries> list = vodInfo.seriesMap.get(vodInfo.playFlag);\n        int w = 1;\n        for(int i =0; i < list.size(); ++i){\n            String name = list.get(i).name;\n            pFont.getTextBounds(name, 0, name.length(), rect);\n            if(w < rect.width()){\n                w = rect.width();\n            }\n        }\n        w += 32;\n        int screenWidth = getWindowManager().getDefaultDisplay().getWidth()\/3;\n        int offset = screenWidth\/w;\n        if(offset <=1) offset =1;\n        if(offset > 6) offset =6;\n        this.mGridViewLayoutMgr.setSpanCount(offset);\n' tv/app/src/main/java/com/github/tvbox/osc/ui/activity/DetailActivity.java
-#sed -i 's/FrameLayout/LinearLayout/g' tv/app/src/main/res/layout/item_series.xml
-#sed -i 's/width=\"wrap_content\"/width=\"match_parent\"/g' tv/app/src/main/res/layout/item_series.xml
-#sed -i 's/@dimen\/vs_190/match_parent/g' tv/app/src/main/res/layout/item_series.xml
-
 # 给apk签名
 touch ./ApkSign.sh
 cat << 'EOF' > ./ApkSign.sh
