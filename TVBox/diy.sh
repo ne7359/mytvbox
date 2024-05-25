@@ -11,7 +11,7 @@
 #sed -i '/minSdkVersion/a\        targetSdkVersion 29' tv/app/build.gradle
 
 # 修改扫码管理首页名
-cp -f TVBox/file/index.html tv/app/src/main/assets/index.html
+cp -f TVBox/file/index.html tv/app/src/main/assets/*
 #sed -i 's/影視/QTM影视/g' tv/app/src/main/assets/index.html
 echo '修改扫码管理首页名完成'
 
