@@ -1,5 +1,10 @@
 #!/bin/bash
 
+sed -i '/versionCode/d' app/build.gradle
+sed -i '/com.github.tvbox.osc.tk/a\        versionCode ${{ env.tag }}' app/build.gradle
+sed -i '/versionName/d' app/build.gradle
+sed -i '/com.github.tvbox.osc.tk/a\        versionName "QTM ${{ env.tag }}"' app/build.gradle
+
 sed -i 's/影视/QTM影视/g' app/src/main/res/values-zh-rCN/strings.xml
 sed -i 's/影視/QTM影视/g' app/src/main/res/values-zh-rTW/strings.xml
 echo '软件名称修改完成'
