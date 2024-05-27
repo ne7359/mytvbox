@@ -27,6 +27,6 @@ def edit_gradle_file(version):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--version', type=str, default="${{ env.bteme }}")  ## 添加
+    parser.add_argument('--version', type=str, default="2.3.9")  ## 添加
     args = parser.parse_args()
     edit_gradle_file(args.version)
