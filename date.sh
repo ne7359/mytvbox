@@ -1,5 +1,14 @@
 #!/bin/bash
 
+echo "VERSION=$(curl -s "https://raw.githubusercontent.com/${{ inputs.user_godown }}/${{ inputs.source_branch }}/app/build.gradle" | grep 'versionName' | cut -d\" -f2)" >> $GITHUB_ENV
+echo '读取源版本信息完成'
+
+echo "tag=$(date "+%Y.%m.%d-%H.%M")" >> $GITHUB_ENV
+echo '设置发布时间用于tag标签完成'
+
+echo "bteme=$(date "+%y.%m.%d")" >> $GITHUB_ENV
+echo '设置年月日时间为版本号完成'
+
 sed -i 's/影视/QTM影视/g' app/src/main/res/values-zh-rCN/strings.xml
 sed -i 's/影視/QTM影视/g' app/src/main/res/values-zh-rTW/strings.xml
 echo '软件名称修改完成'
