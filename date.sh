@@ -1,8 +1,5 @@
 #!/bin/bash
 
-echo "VERSION=$(curl -s "https://raw.githubusercontent.com/${{ inputs.user_godown }}/${{ inputs.source_branch }}/app/build.gradle" | grep 'versionName' | cut -d\" -f2)" >> $GITHUB_ENV
-echo '读取源版本信息完成'
-
 echo "tag=$(date "+%Y.%m.%d-%H.%M")" >> $GITHUB_ENV
 echo '设置发布时间用于tag标签完成'
 
