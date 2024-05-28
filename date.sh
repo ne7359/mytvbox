@@ -1,8 +1,5 @@
 #!/bin/bash
 
-sed -i 's/versionName "[0-9]*\.[0-9]*\.[0-9]*"/versionName "QTM Build v${{ env.bteme }}"/g' app/build.gradle
-echo '版本号更改完成'
-
 sed -i 's/影视/QTM影视/g' app/src/main/res/values-zh-rCN/strings.xml
 sed -i 's/影視/QTM影视/g' app/src/main/res/values-zh-rTW/strings.xml
 echo '软件名称修改完成'
