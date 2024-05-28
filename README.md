@@ -37,6 +37,7 @@ Android各版本对应的SDK版本：
 This repo relies on the following third-party projects:
 - [CatVodTVOfficial/TVBoxOSC](https://github.com/CatVodTVOfficial/TVBoxOSC)
 - [FongMi/TV](https://github.com/FongMi/TV) (Updated: a545c27b99b6d6d9e54196b8a0adcf3b56a97ddf)
+- [FongMi/TV/tree/fongmi](https://github.com/FongMi/TV/tree/fongmi) (Updated: a545c27b99b6d6d9e54196b8a0adcf3b56a97ddf)
 - [okcaptain/TV](https://github.com/okcaptain/TV) (Updated: 9ed0846ccad4a0af71914fd6d219c5a80848a597)
 - [jadehh/FongMiTV](https://github.com/jadehh/FongMiTV) (Updated: 9ed0846ccad4a0af71914fd6d219c5a80848a597)
 - [LyOuYang/TV](https://github.com/LyOuYang/TV) (Updated: 9ed0846ccad4a0af71914fd6d219c5a80848a597)
