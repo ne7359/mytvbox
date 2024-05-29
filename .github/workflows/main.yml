@@ -79,10 +79,6 @@ jobs:
           chmod +x $GITHUB_WORKSPACE/code/date.sh
           $GITHUB_WORKSPACE/code/date.sh
 
-      - name: diy2
-         if: ${{ inputs.source_branch != 'release' }} # 如果分支先择release就会跳过  代码有 (= 与 !=  等于 不等于)，方法2 if: ${{ inputs.source_branch == 'release' }}如果分支先择release就会就会执行
-        working-directory: tv
-        run: |
 
       - name: 安装 Java
         uses: actions/setup-java@v4
