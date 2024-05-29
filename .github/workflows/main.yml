@@ -93,7 +93,7 @@ jobs:
       - name: 用 Gradle 构建 apk
         working-directory: tv
         run: |
-          bash gradlew ${{ matrix.framework}} --warning-mode all --stacktrace --debug
+          bash gradlew ${{ matrix.framework}} --build-cache --parallel --daemon --warning-mode all
  
       - name: 编译完成时间
         run: |
