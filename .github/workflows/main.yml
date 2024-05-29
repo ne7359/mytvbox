@@ -18,6 +18,7 @@ on:
           - okcaptain/TV
           - jadehh/FongMiTV
           - LyOuYang/TV
+          - ne7359/TV
       source_branch:
         description: "选择 TV 分支"
         required: false
