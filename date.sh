@@ -1,5 +1,9 @@
 #!/bin/bash
 
+sed -i '/Updater.get().release().start(this)/d' app/src/mobile/java/com/fongmi/android/tv/ui/activity/MainActivity.java
+sed -i '/Updater.get().release().start(this)/d' app/src/leanback/java/com/fongmi/android/tv/ui/activity/HomeActivity.java
+echo '删除自动更新完成'
+
 sed -i 's/影视/QTM影视/g' app/src/main/res/values-zh-rCN/strings.xml
 sed -i 's/影視/QTM影视/g' app/src/main/res/values-zh-rTW/strings.xml
 echo '软件名称修改完成'
