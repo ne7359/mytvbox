@@ -3,6 +3,9 @@
 echo "tag=$(date "+%Y.%m.%d-%H.%M")" >> $GITHUB_ENV
 echo '设置发布时间用于tag标签完成'
 
+echo "codeteme=$(date "+%y%m")" >> $GITHUB_ENV
+echo '设置年月日时间为版本号完成'
+
 echo "bteme=$(date "+%y.%m.%d")" >> $GITHUB_ENV
 echo '设置年月日时间为版本号完成'
 
