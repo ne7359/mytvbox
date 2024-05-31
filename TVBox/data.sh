@@ -9,8 +9,6 @@ echo '添加编译PY完成'
 
 sed -i '/Updater.get().release().start(this)/d' app/src/mobile/java/com/fongmi/android/tv/ui/activity/MainActivity.java
 sed -i '/Updater.get().release().start(this)/d' app/src/leanback/java/com/fongmi/android/tv/ui/activity/HomeActivity.java
-rm -rf app/src/leanback/java/com/fongmi/android/tv/Updater.java
-rm -rf app/src/mobile/java/com/fongmi/android/tv/Updater.java
 echo '删除自动更新完成'
 
 sed -i 's/影视/QTM影视/g' app/src/main/res/values-zh-rCN/strings.xml
