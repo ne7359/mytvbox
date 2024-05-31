@@ -1,10 +1,10 @@
 #!/bin/bash
 
 sed -i '/proguardFiles getDefaultProguardFile/a\            signingConfig signingConfigs.debug' app/build.gradle
-sed -i '/ijkplayer/a\    implementation project(':pyramid')' app/build.gradle
+sed -i '/ijkplayer/a\    implementation project('\'':pyramid'\'')' app/build.gradle
 sed -i 's/requests/requests==2.24.0/g' pyramid/build.gradle
-sed -i '/pycryptodome/a\                install 'soupsieve==2.4'' pyramid/build.gradle
-sed -i '/ijkplayer/a\include ':pyramid'' settings.gradle
+sed -i '/pycryptodome/a\                install '\''soupsieve==2.4'\''' pyramid/build.gradle
+sed -i '/ijkplayer/a\include '\''':pyramid'\''' settings.gradle
 echo '添加编译PY完成'
 
 sed -i '/Updater.get().release().start(this)/d' app/src/mobile/java/com/fongmi/android/tv/ui/activity/MainActivity.java
