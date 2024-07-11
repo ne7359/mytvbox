@@ -4,9 +4,10 @@ sed -i '/Updater.get().release().start(this)/d' app/src/mobile/java/com/fongmi/a
 sed -i '/Updater.get().release().start(this)/d' app/src/leanback/java/com/fongmi/android/tv/ui/activity/HomeActivity.java
 echo '删除自动更新完成'
 
-sed -i 's/OK影视/QTM影视/g' app/src/main/res/values-zh-rCN/strings.xml
-sed -i 's/OK影視/QTM影视/g' app/src/main/res/values-zh-rTW/strings.xml
-sed -i 's/OKTV/QTMTV/g' app/src/main/res//values/strings.xml
+#sed -i 's/OK影视/QTM影视/g' app/src/main/res/values-zh-rCN/strings.xml
+sed -i 's/<string name="app_name">.*<\/string>/<string name="app_name">QTM影视<\/string>/g' app/src/main/res/values-zh-rCN/strings.xml
+sed -i 's/<string name="app_name">.*<\/string>/<string name="app_name">QTM影视<\/string>/g' app/src/main/res/values-zh-rTW/strings.xml
+sed -i 's/<string name="app_name">.*<\/string>/<string name="app_name">QTM影视<\/string>/g' app/src/main/res//values/strings.xml
 echo '软件名称修改完成'
 
 cp -rf $GITHUB_WORKSPACE/code/TVBox/file/index.html app/src/main/assets/index.html
