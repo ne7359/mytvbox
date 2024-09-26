@@ -39,7 +39,9 @@ public final class SubtitleDialog extends BaseDialog {
     }
 
     public void show(FragmentActivity activity) {
-        for (Fragment f : activity.getSupportFragmentManager().getFragments()) if (f instanceof BottomSheetDialogFragment) return;
+        for (Fragment f : activity.getSupportFragmentManager().getFragments()) {
+            if (f instanceof BottomSheetDialogFragment) return;
+        }
         show(activity.getSupportFragmentManager(), null);
     }
 
@@ -50,13 +52,19 @@ public final class SubtitleDialog extends BaseDialog {
 
     @Override
     protected ViewBinding getBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
-        return binding = DialogSubtitleBinding.inflate(inflater, container, false);
+        binding = DialogSubtitleBinding.inflate(inflater, container, false);
+        return binding;  // 确保返回正确的绑定对象
     }
 
     @Override
     protected void initView() {
+        super.initView();  // 确保调用父类方法
         int count = binding.getRoot().getChildCount();
-        if (full) for (int i = 0; i < count; i++) ((ImageView) binding.getRoot().getChildAt(i)).getDrawable().setTint(MDColor.WHITE);
+        if (full) {
+            for (int i = 0; i < count; i++) {
+                ((ImageView) binding.getRoot().getChildAt(i)).getDrawable().setTint(MDColor.WHITE);
+            }
+        }
     }
 
     @Override
