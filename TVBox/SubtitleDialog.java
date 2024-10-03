@@ -13,7 +13,6 @@ import androidx.media3.ui.SubtitleView;
 import androidx.viewbinding.ViewBinding;
 
 import com.fongmi.android.tv.Setting;
-import com.fongmi.android.tv.SubtitleView;
 import com.fongmi.android.tv.databinding.DialogSubtitleBinding;
 import com.fongmi.android.tv.utils.ResUtil;
 import com.github.bassaer.library.MDColor;
@@ -62,10 +61,6 @@ public final class SubtitleDialog extends BaseDialog {
 
     @Override
     protected void initEvent() {
-        binding.up.setOnClickListener(this::onUp);
-        binding.down.setOnClickListener(this::onDown);
-        binding.large.setOnClickListener(this::onLarge);
-        binding.small.setOnClickListener(this::onSmall);
         binding.reset.setOnClickListener(this::onReset);
     }
 
