@@ -17,7 +17,7 @@ import com.fongmi.android.tv.databinding.DialogSubtitleBinding;
 import com.fongmi.android.tv.utils.ResUtil;
 import com.github.bassaer.library.MDColor;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.bumptech.glide.integration.okhttp3.OkHttpLibraryGlideModule
+import com.bumptech.glide.integration.okhttp3.OkHttpLibraryGlideModule;
 
 public final class SubtitleDialog extends BaseDialog {
 
