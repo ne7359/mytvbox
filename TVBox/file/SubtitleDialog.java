@@ -17,6 +17,7 @@ import com.fongmi.android.tv.databinding.DialogSubtitleBinding;
 import com.fongmi.android.tv.utils.ResUtil;
 import com.github.bassaer.library.MDColor;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.bumptech.glide.integration.okhttp3.OkHttpLibraryGlideModule
 
 public final class SubtitleDialog extends BaseDialog {
 
@@ -61,7 +62,31 @@ public final class SubtitleDialog extends BaseDialog {
 
     @Override
     protected void initEvent() {
+        binding.up.setOnClickListener(this::onUp);
+        binding.down.setOnClickListener(this::onDown);
+        binding.large.setOnClickListener(this::onLarge);
+        binding.small.setOnClickListener(this::onSmall);
         binding.reset.setOnClickListener(this::onReset);
+    }
+
+    private void onUp(View view) {
+        subtitleView.addBottomPadding(0.005f);
+        Setting.putSubtitleBottomPadding(subtitleView.getBottomPadding());
+    }
+
+    private void onDown(View view) {
+        subtitleView.subBottomPadding(0.005f);
+        Setting.putSubtitleBottomPadding(subtitleView.getBottomPadding());
+    }
+
+    private void onLarge(View view) {
+        subtitleView.addTextSize(0.002f);
+        Setting.putSubtitleTextSize(subtitleView.getTextSize());
+    }
+
+    private void onSmall(View view) {
+        subtitleView.subTextSize(0.002f);
+        Setting.putSubtitleTextSize(subtitleView.getTextSize());
     }
 
     private void onReset(View view) {
