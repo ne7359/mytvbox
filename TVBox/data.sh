@@ -1,5 +1,5 @@
 #!/bin/bash
-cp -rf $GITHUB_WORKSPACE/code/TVBox/SubtitleDialog.java app/src/main/java/com/fongmi/android/tv/ui/dialog/SubtitleDialog.java
+#cp -rf $GITHUB_WORKSPACE/code/TVBox/SubtitleDialog.java app/src/main/java/com/fongmi/android/tv/ui/dialog/SubtitleDialog.java
 #cp -rf $GITHUB_WORKSPACE/code/TVBox/build.gradle app/build.gradle
 #修复编译总是出错在这８项
 sed -i '/Updater.get().release().start(this)/d' app/src/mobile/java/com/fongmi/android/tv/ui/activity/MainActivity.java
