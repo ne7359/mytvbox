@@ -15,13 +15,13 @@ cp -rf $GITHUB_WORKSPACE/code/TVBox/file/index.html app/src/main/assets/index.ht
 #sed -i 's/影視/QTM影视/g' app/src/main/assets/index.html
 echo '修改远程管理首页名完成'
           
-#如果要添加播放源删除，前面中文与#注释 sed -i '/tv.api.config.LiveConfig/a\import com.fongmi.android.tv.bean.Config;' app/src/main/java/com/fongmi/android/tv/App.java   # import添加播放源Config
+sed -i '/tv.api.config.LiveConfig/a\import com.fongmi.android.tv.bean.Config;' app/src/main/java/com/fongmi/android/tv/App.java   # import添加播放源Config
 #sed -i '/this.activity = activity/a\        Config.create(0,"https://9584.kstore.space/my.json").update();' app/src/main/java/com/fongmi/android/tv/App.java   # 默认点播配置
-#如果要添加播放源删除，前面中文与#注释 sed -i '/this.activity = activity/a\        Config.create(0,"https://u.kstore.space/download/9574/my.json").update();' app/src/main/java/com/fongmi/android/tv/App.java   # 默认点播配置
-#如果要添加播放源删除，前面中文与#注释 echo '添加默认点播配置完成'
+sed -i '/this.activity = activity/a\        Config.create(0,"https://d.kstore.dev/download/9574/my.json").update();' app/src/main/java/com/fongmi/android/tv/App.java   # 默认点播配置
+echo '添加默认点播配置完成'
 #sed -i '/默认点播配置/a\        Config.create(1,"https://9584.kstore.space/my.json").update();' app/src/main/java/com/fongmi/android/tv/App.java   # 默认直播配置
-#如果要添加播放源删除，前面中文与#注释 sed -i '/默认点播配置/a\        Config.create(1,"https://u.kstore.space/download/9574/my.json").update();' app/src/main/java/com/fongmi/android/tv/App.java   # 默认直播配置
-#如果要添加播放源删除，前面中文与#注释 echo '添加默认直播配置完成'
+sed -i '/默认点播配置/a\        Config.create(1,"https://d.kstore.dev/download/9574/my.json").update();' app/src/main/java/com/fongmi/android/tv/App.java   # 默认直播配置
+echo '添加默认直播配置完成'
           
 cp -rf $GITHUB_WORKSPACE/code/TVBox/img/01/ic_launcher.png app/src/main/res/mipmap-hdpi/ic_launcher.png
 cp -rf $GITHUB_WORKSPACE/code/TVBox/img/01/ic_launcher_foreground.png app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png
