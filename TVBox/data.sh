@@ -15,7 +15,7 @@ cp -rf $GITHUB_WORKSPACE/code/TVBox/file/index.html app/src/main/assets/index.ht
 #sed -i 's/影視/QTM影视/g' app/src/main/assets/index.html
 echo '修改远程管理首页名完成'
 
-sed -i '/android.tv.event.EventIndex/a\import com.fongmi.android.tv.api.config.LiveConfig;' app/src/main/java/com/fongmi/android/tv/App.java   # import添加播放源Config
+sed -i '/android.tv.event.EventIndex/a\import com.fongmi.android.tv.api.config.LiveConfig;' app/src/main/java/com/fongmi/android/tv/App.java   # 新添加，查找android.tv.event.EventIndex添加回import com.fongmi.android.tv.api.config.LiveConfig;因项目已经删除了
 sed -i '/tv.api.config.LiveConfig/a\import com.fongmi.android.tv.bean.Config;' app/src/main/java/com/fongmi/android/tv/App.java   # import添加播放源Config
 sed -i '/this.activity = activity/a\        Config.create(0,"https://d.kstore.dev/download/9574/my.json").update();' app/src/main/java/com/fongmi/android/tv/App.java   # 默认点播配置
 echo '添加默认点播配置完成'
