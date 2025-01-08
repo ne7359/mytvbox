@@ -1,6 +1,6 @@
 #!/bin/bash
-cp -rf $GITHUB_WORKSPACE/code/TVBox/file/SubtitleDialog.java app/src/main/java/com/fongmi/android/tv/ui/dialog/SubtitleDialog.java
-#修复编译总是出错在这SubtitleView项
+#cp -rf $GITHUB_WORKSPACE/code/TVBox/file/SubtitleDialog.java app/src/main/java/com/fongmi/android/tv/ui/dialog/SubtitleDialog.java
+#修复编译总是出错在这SubtitleView项,编译时出错/home/runner/work/MyALL/MyALL/tv/app/src/main/java/com/fongmi/android/tv/ui/dialog/SubtitleDialog.java:73: error: cannot find symbol
 sed -i '/Updater.get().release().start(this)/d' app/src/mobile/java/com/fongmi/android/tv/ui/activity/MainActivity.java
 sed -i '/Updater.get().release().start(this)/d' app/src/leanback/java/com/fongmi/android/tv/ui/activity/HomeActivity.java
 echo '删除自动更新完成'
